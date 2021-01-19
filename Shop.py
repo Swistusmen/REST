@@ -24,7 +24,7 @@ class Shop(Resource):
         return result, 200
 
     @marshal_with(shop_fields)
-    def put(self, shop_id):
+    def post(self, shop_id):
         result = ShopModel.query.filter_by(shop_id=shop_id).first()
         if result:
             abort (406, message="Shop is already in database")
@@ -43,7 +43,7 @@ class Shop(Resource):
         return args, 201
 
     @marshal_with(shop_fields)
-    def post(self, shop_id):
+    def put(self, shop_id):
         result = ShopModel.query.filter_by(shop_id=shop_id).first()
         args = Shop_Parser.parse_args()
         if result:
